@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab 3.3 - Electricity Calculator</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f1f5f9;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .calculator-container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+            width: 100%;
+            max-width: 500px;
+        }
+        h2 {
+            text-align: center;
+            color: #1e3a8a;
+            margin-bottom: 25px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 600;
+            color: #334155;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            font-size: 1rem;
+            box-sizing: border-box;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #1e3a8a;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background 0.2s;
+        }
+        button:hover {
+            background-color: #1d4ed8;
+        }
+        .result-box {
+            background-color: #eff6ff;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 5px solid #1e3a8a;
+            margin-top: 20px;
+        }
+        .result-box h4 {
+            margin-top: 0;
+            color: #1e3a8a;
+            font-size: 1.1rem;
+            border-bottom: 1px solid #bfdbfe;
+            padding-bottom: 8px;
+        }
+        .result-box p {
+            margin: 8px 0;
+            color: #334155;
+            display: flex;
+            justify-content: space-between;
+        }
+        .result-box p strong {
+            color: #0f172a;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="calculator-container">
+        <h2>คำนวณค่าไฟฟ้าภายในบ้าน</h2>
+        
+
+        <div class="form-group">
+            <label for="prevUnit">เลขมิเตอร์ครั้งก่อน (หน่วย):</label>
+            <input type="number" id="prevUnit" placeholder="เช่น 4250" min="0" required>
+        </div>
+
+        <div class="form-group">
+            <label for="currentUnit">เลขมิเตอร์ครั้งนี้ (หน่วย):</label>
+            <input type="number" id="currentUnit" placeholder="เช่น 4700" min="0" required>
+        </div>
+
+        <button onclick="calculateElectricity()">คำนวณค่าไฟ</button>
+
+        <div id="result"></div>
+    </div>
+
+    <script src="lab3_3.js"></script>
+</body>
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab 3.1 - Home Loan Calculator</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f1f5f9;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .calculator-container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+            width: 100%;
+            max-width: 500px;
+            margin-bottom: 25px;
+        }
+        h2 {
+            text-align: center;
+            color: #0f172a;
+            margin-bottom: 25px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 600;
+            color: #334155;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #0ea5e9;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background 0.2s;
+        }
+        button:hover {
+            background-color: #0284c7;
+        }
+        .result-box {
+            background-color: #f8fafc;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 5px solid #0ea5e9;
+            margin-top: 20px;
+        }
+        .result-box p {
+            margin: 8px 0;
+            color: #475569;
+        }
+
+        .table-container {
+            width: 100%;
+            max-width: 800px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+            padding: 20px;
+            overflow-x: auto;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        th, td {
+            border: 1px solid #e2e8f0;
+            padding: 10px;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+        th {
+            background-color: #0f172a;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f8fafc;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="calculator-container">
+        <h2>คำนวณสินเชื่อบ้าน</h2>
+        
+
+        <div class="form-group">
+            <label for="salary">เงินเดือนปัจจุบัน (บาท):</label>
+            <input type="number" id="salary" placeholder="เช่น 30000" min="0" required>
+        </div>
+
+        <div class="form-group">
+            <label for="loanAmount">วงเงินที่ต้องการกู้ (บาท):</label>
+            <input type="number" id="loanAmount" placeholder="ต้องไม่เกิน 200 เท่าของเงินเดือน" min="0" required>
+        </div>
+
+        <div class="form-group">
+            <label for="interestRate">อัตราดอกเบี้ยต่อปี (%):</label>
+            <input type="number" id="interestRate" step="0.1" value="3.5" required>
+        </div>
+
+        <div class="form-group">
+            <label for="years">ระยะเวลาผ่อนชำระ (ปี):</label>
+            <input type="number" id="years" value="30" min="1" required>
+        </div>
+
+        <button onclick="calculateLoan()">คำนวณผลลัพธ์</button>
+
+
+        <div id="result"></div>
+    </div>
+
+
+    <div class="table-container" id="tableContainer" style="display: none;">
+        <h3 style="text-align: center; color: #0f172a;">ตารางผ่อนชำระรายงวด (Amortization Schedule)</h3>
+        <table id="paymentTable">
+            <thead>
+                <tr>
+                    <th>งวดที่</th>
+                    <th>เงินต้นคงเหลือ</th>
+                    <th>ค่างวด</th>
+                    <th>ดอกเบี้ยที่ต้องจ่าย</th>
+                    <th>เงินต้นที่ลดลง</th>
+                    <th>เงินต้นคงเหลือยกไป</th>
+                </tr>
+            </thead>
+            <tbody id="tableBody"></tbody>
+        </table>
+    </div>
+
+    <script src="3_1.js"></script>
+</body>
+</html>

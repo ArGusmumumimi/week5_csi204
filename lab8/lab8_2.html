@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab 8.2 - ระบบภาษีและส่วนลด</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f1f5f9;
+            padding: 30px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+            width: 100%;
+            max-width: 700px;
+        }
+        h2 {
+            text-align: center;
+            color: #0f172a;
+            margin-bottom: 25px;
+        }
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+        button {
+            flex: 1;
+            padding: 12px;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+        button:hover { opacity: 0.9; }
+        .btn-for { background-color: #3b82f6; }
+        .btn-while { background-color: #10b981; }
+        .btn-dowhile { background-color: #f59e0b; }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        th, td {
+            padding: 12px;
+            border: 1px solid #cbd5e1;
+            text-align: left;
+        }
+        th { background-color: #f8fafc; color: #475569; }
+        .text-right { text-align: right; }
+        .text-center { text-align: center; }
+        .summary-row {
+            font-weight: bold;
+            background-color: #f8fafc;
+        }
+        .loop-badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>ระบบคำนวณใบเสร็จและภาษีสินค้า (8.2)</h2>
+
+        <div class="btn-group">
+            <button class="btn-for" onclick="generateInvoice('for')"> ใช้ for loop</button>
+            <button class="btn-while" onclick="generateInvoice('while')"> ใช้ while loop</button>
+            <button class="btn-dowhile" onclick="generateInvoice('do-while')"> ใช้ do-while loop</button>
+        </div>
+
+        <div id="loopStatus"></div>
+
+
+        <table id="invoiceTable" style="display: none;">
+            <thead>
+                <tr>
+                    <th>ชื่อสินค้า</th>
+                    <th class="text-right">ราคา (บาท)</th>
+                    <th class="text-center">จำนวน</th>
+                    <th class="text-right">รวม (บาท)</th>
+                </tr>
+            </thead>
+            <tbody id="tableBody">
+
+            </tbody>
+            <tfoot id="tableFoot">
+              
+            </tfoot>
+        </table>
+    </div>
+
+    <script src="lab8_2.js"></script>
+</body>
+</html>

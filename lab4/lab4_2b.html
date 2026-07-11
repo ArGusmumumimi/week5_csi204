@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab 4.2b - หน้าตะกร้าสินค้า</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f1f5f9;
+            padding: 30px;
+            display: flex;
+            justify-content: center;
+        }
+        .basket-container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+            width: 100%;
+            max-width: 500px;
+        }
+        h2 { text-align: center; color: #1e293b; margin-bottom: 25px; }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            padding: 12px;
+            border-bottom: 1px solid #e2e8f0;
+            text-align: left;
+        }
+        th { background-color: #f8fafc; color: #64748b; }
+        .total-row {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #0ea5e9;
+            text-align: right;
+            padding-top: 15px;
+        }
+        .link-back {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #64748b;
+            text-decoration: none;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="basket-container">
+        <h2>สรุปรายการในตะกร้า (4.2b)</h2>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>สินค้า</th>
+                    <th>ราคา/ชิ้น</th>
+                    <th>จำนวน</th>
+                    <th>รวม (บาท)</th>
+                </tr>
+            </thead>
+            <tbody id="basketBody">
+                
+            </tbody>
+        </table>
+
+        
+        <div class="total-row" id="totalPriceBox">
+            ราคารวมทั้งสิ้น: 0 บาท
+        </div>
+
+        <a href="lab4_2a.html" class="link-back">กลับไปหน้าร้านค้า (lab4_2a.html)</a>
+    </div>
+
+    <script>
+        window.onload = function() {
+            
+            let mouseQty = parseInt(sessionStorage.getItem("cart_mouse")) || 0;
+            let keyboardQty = parseInt(sessionStorage.getItem("cart_keyboard")) || 0;
+            let headsetQty = parseInt(sessionStorage.getItem("cart_headset")) || 0;
+
+            
+            let prices = { mouse: 1290, keyboard: 2590, headset: 1890 };
+            let totalSummary = 0;
+            let htmlContent = "";
+
+            if (mouseQty > 0) {
+                let subTotal = mouseQty * prices.mouse;
+                totalSummary += subTotal;
+                htmlContent += `<tr><td>เมาส์เกมมิ่ง</td><td>1,290</td><td>${mouseQty}</td><td>${subTotal.toLocaleString()}</td></tr>`;
+            }
+            if (keyboardQty > 0) {
+                let subTotal = keyboardQty * prices.keyboard;
+                totalSummary += subTotal;
+                htmlContent += `<tr><td>คีย์บอร์ด Mech</td><td>2,590</td><td>${keyboardQty}</td><td>${subTotal.toLocaleString()}</td></tr>`;
+            }
+            if (headsetQty > 0) {
+                let subTotal = headsetQty * prices.headset;
+                totalSummary += subTotal;
+                htmlContent += `<tr><td>หูฟัง Surround</td><td>1,890</td><td>${headsetQty}</td><td>${subTotal.toLocaleString()}</td></tr>`;
+            }
+
+            if (htmlContent === "") {
+                htmlContent = `<tr><td colspan="4" style="text-align:center; color:#94a3b8;">ไม่มีสินค้าในตะกร้า</td></tr>`;
+            }
+
+            document.getElementById("basketBody").innerHTML = htmlContent;
+            document.getElementById("totalPriceBox").innerText = `ราคารวมทั้งสิ้น: ${totalSummary.toLocaleString()} บาท`;
+        };
+    </script>
+</body>
+</html>

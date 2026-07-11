@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>แสดงผลข้อมูล</title>
+    <style>
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        
+        /* รายการสไตล์สำหรับแต่ละ Theme*/
+        body.theme-light { background-color: #f1f5f9; color: #1e293b; }
+        body.theme-dark { background-color: #0f172a; color: #f8fafc; }
+        body.theme-ocean { background-color: #0c4a6e; color: #e0f2fe; }
+
+        .display-container {
+            background-color: var(--card-bg, #ffffff);
+            border: 1px solid #cbd5e1;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 450px;
+        }
+        body.theme-dark .display-container { --card-bg: #1e293b; border-color: #334155; }
+        body.theme-ocean .display-container { --card-bg: #075985; border-color: #0369a1; }
+
+        h2 { text-align: center; margin-bottom: 25px; }
+        
+        .info-box {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+        .info-box strong { color: #4f46e5; }
+        body.theme-dark .info-box strong { color: #38bdf8; }
+        body.theme-ocean .info-box strong { color: #38bdf8; }
+
+        .btn-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        button {
+            padding: 10px;
+            font-size: 1rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+        button:hover { opacity: 0.9; }
+        .btn-clear { background-color: #ef4444; color: white; }
+        .btn-change-theme { background-color: #10b981; color: white; }
+        
+        .link-back {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: inherit;
+            text-decoration: none;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body class="theme-light"> 
+
+    <div class="display-container">
+        <h2>หน้าแสดงผลข้อมูล (4.1b)</h2>
+        
+
+        <div class="info-box">
+            <p><strong>ชื่อ-นามสกุล:</strong> <span id="showName">ไม่มีข้อมูล</span></p>
+            <p><strong>อีเมล:</strong> <span id="showEmail">ไม่มีข้อมูล</span></p>
+            <p><strong>เบอร์โทรศัพท์:</strong> <span id="showPhone">ไม่มีข้อมูล</span></p>
+            <p><strong>Theme ที่ตั้งไว้:</strong> <span id="showTheme">ไม่มีข้อมูล</span></p>
+        </div>
+
+
+        <div class="btn-group">
+            <button class="btn-change-theme" onclick="cycleTheme()">สลับเปลี่ยน Theme บนหน้าเว็บ</button>
+            <button class="btn-clear" onclick="clearStorage()">ล้างข้อมูลทั้งหมด (Clear Storage)</button>
+        </div>
+
+        <a href="lab4_1a.html" class="link-back">กลับไปหน้าฟอร์ม (lab4_1a.html)</a>
+    </div>
+
+    <script>
+        // ข้อมูลแสดงทันทีเมื่อเปิดหน้าเว็บ
+        window.onload = function() {
+            loadAndApplyData();
+        };
+
+        function loadAndApplyData() {
+            let name = localStorage.getItem("user_name");
+            let email = localStorage.getItem("user_email");
+            let phone = localStorage.getItem("user_phone");
+            let theme = localStorage.getItem("user_theme") || "light";
+
+            if (name) document.getElementById("showName").innerText = name;
+            if (email) document.getElementById("showEmail").innerText = email;
+            if (phone) document.getElementById("showPhone").innerText = phone;
+            document.getElementById("showTheme").innerText = theme;
+
+            // Theme ที่บันทึกไว้
+            applyThemeClass(theme);
+        }
+
+        function applyThemeClass(theme) {
+            document.body.className = "";
+            document.body.classList.add("theme-" + theme);
+        }
+
+
+        function cycleTheme() {
+            let currentTheme = localStorage.getItem("user_theme") || "light";
+            let nextTheme = "light";
+
+            if (currentTheme === "light") nextTheme = "dark";
+            else if (currentTheme === "dark") nextTheme = "ocean";
+            else nextTheme = "light";
+
+            localStorage.setItem("user_theme", nextTheme);
+            document.getElementById("showTheme").innerText = nextTheme;
+            applyThemeClass(nextTheme);
+        }
+
+
+        function clearStorage() {
+            if (confirm("คุณแน่ใจใช่ไหมที่จะล้างข้อมูล localStorage ทั้งหมด?")) {
+                localStorage.clear();
+                alert("ล้างข้อมูลเรียบร้อยแล้ว!");
+
+                document.getElementById("showName").innerText = "ไม่มีข้อมูล";
+                document.getElementById("showEmail").innerText = "ไม่มีข้อมูล";
+                document.getElementById("showPhone").innerText = "ไม่มีข้อมูล";
+                document.getElementById("showTheme").innerText = "light";
+                applyThemeClass("light");
+            }
+        }
+    </script>
+</body>
+</html>

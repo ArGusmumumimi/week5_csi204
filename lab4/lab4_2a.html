@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab 4.2a - ฟอร์มเลือกสินค้า</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f1f5f9;
+            padding: 30px;
+            display: flex;
+            justify-content: center;
+        }
+        .shop-container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+            width: 100%;
+            max-width: 450px;
+        }
+        h2 { text-align: center; color: #0f172a; margin-bottom: 25px; }
+        .product-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            margin-bottom: 12px;
+            background-color: #f8fafc;
+        }
+        .product-info { font-weight: 600; color: #334155; }
+        .product-price { color: #0ea5e9; font-size: 0.95rem; }
+        .quantity-input {
+            width: 60px;
+            padding: 6px;
+            border: 1px solid #cbd5e1;
+            border-radius: 4px;
+            text-align: center;
+        }
+        .btn-cart {
+            width: 100%;
+            padding: 12px;
+            background-color: #0ea5e9;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+        .btn-cart:hover { background-color: #0284c7; }
+        .link-basket {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #0ea5e9;
+            text-decoration: none;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="shop-container">
+        <h2>ร้านค้าออนไลน์จำลอง (4.2a)</h2>
+        
+      
+        <div class="product-item">
+            <div>
+                <div class="product-info">เมาส์เกมมิ่ง RGB</div>
+                <div class="product-price">ราคา 1,290 บาท</div>
+            </div>
+            <input type="number" id="qty_mouse" class="quantity-input" value="0" min="0">
+        </div>
+
+        <div class="product-item">
+            <div>
+                <div class="product-info">คีย์บอร์ด Mechanical</div>
+                <div class="product-price">ราคา 2,590 บาท</div>
+            </div>
+            <input type="number" id="qty_keyboard" class="quantity-input" value="0" min="0">
+        </div>
+
+        <div class="product-item">
+            <div>
+                <div class="product-info">หูฟัง Surround 7.1</div>
+                <div class="product-price">ราคา 1,890 บาท</div>
+            </div>
+            <input type="number" id="qty_headset" class="quantity-input" value="0" min="0">
+        </div>
+
+        <button class="btn-cart" onclick="addToSessionCart()">บันทึกลงตะกร้าชั่วคราว</button>
+        
+        <a href="lab4_2b.html" class="link-basket">ไปหน้าตรวจดูตะกร้าสินค้า (lab4_2b.html)</a>
+    </div>
+
+    <script>
+        function addToSessionCart() {
+            let mouseQty = parseInt(document.getElementById("qty_mouse").value) || 0;
+            let keyboardQty = parseInt(document.getElementById("qty_keyboard").value) || 0;
+            let headsetQty = parseInt(document.getElementById("qty_headset").value) || 0;
+
+            if (mouseQty === 0 && keyboardQty === 0 && headsetQty === 0) {
+                alert("กรุณาเลือกจำนวนสินค้าอย่างน้อย 1 ชิ้นครับ");
+                return;
+            }
+
+            
+            sessionStorage.setItem("cart_mouse", mouseQty);
+            sessionStorage.setItem("cart_keyboard", keyboardQty);
+            sessionStorage.setItem("cart_headset", headsetQty);
+
+            alert("เพิ่มสินค้าเข้าตะกร้าชั่วคราว (Session) สำเร็จ!");
+        }
+    </script>
+</body>
+</html>

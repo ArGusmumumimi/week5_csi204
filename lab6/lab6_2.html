@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab 6.2 - ระบบกรองข้อมูลสินค้า</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f1f5f9;
+            padding: 30px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+            width: 100%;
+            max-width: 600px;
+        }
+        h2 {
+            text-align: center;
+            color: #0f172a;
+            margin-bottom: 20px;
+        }
+        .filter-group {
+            margin-bottom: 25px;
+        }
+        .filter-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #475569;
+        }
+        .filter-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            font-size: 1rem;
+            box-sizing: border-box;
+            background-color: #fff;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        th {
+            background-color: #f8fafc;
+            color: #475569;
+            font-weight: 600;
+        }
+        .out-of-stock {
+            color: #ef4444;
+            font-weight: bold;
+        }
+        .in-stock {
+            color: #10b981;
+        }
+        .no-data {
+            text-align: center;
+            color: #94a3b8;
+            padding: 20px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>ระบบจัดการและกรองรายการสินค้า (6.2)</h2>
+
+
+        <div class="filter-group">
+            <label for="categoryFilter"> เลือกหมวดหมู่สินค้าเพื่อกรองข้อมูล:</label>
+            <select id="categoryFilter" onchange="filterProducts()">
+                <option value="all">ทั้งหมด (Show All)</option>
+                <option value="clothing">เสื้อผ้า</option>
+                <option value="equipment">อุปกรณ์</option>
+                <option value="food">อาหาร</option>
+            </select>
+        </div>
+
+
+        <table>
+            <thead>
+                <tr>
+                    <th>ชื่อสินค้า</th>
+                    <th>หมวดหมู่</th>
+                    <th>ราคา (บาท)</th>
+                    <th>สินค้าในสต็อก</th>
+                </tr>
+            </thead>
+            <tbody id="productTableBody">
+
+            </tbody>
+        </table>
+    </div>
+
+
+    <script src="lab6_2.js"></script>
+</body>
+</html>

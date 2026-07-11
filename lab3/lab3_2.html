@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab 3.2 - Car Loan Calculator</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f1f5f9;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .calculator-container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+            width: 100%;
+            max-width: 500px;
+            margin-bottom: 25px;
+        }
+        h2 {
+            text-align: center;
+            color: #1e293b;
+            margin-bottom: 25px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 600;
+            color: #334155;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            font-size: 1rem;
+            box-sizing: border-box;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #f59e0b;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background 0.2s;
+        }
+        button:hover {
+            background-color: #d97706;
+        }
+        .summary-box {
+            background-color: #fffbeb;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 5px solid #f59e0b;
+            margin-top: 20px;
+        }
+        .summary-box p {
+            margin: 8px 0;
+            color: #475569;
+        }
+        .table-container {
+            width: 100%;
+            max-width: 800px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+            padding: 20px;
+            overflow-x: auto;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        th, td {
+            border: 1px solid #e2e8f0;
+            padding: 10px;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+        th {
+            background-color: #1e293b;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f8fafc;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="calculator-container">
+        <h2>คำนวณค่างวดรถยนต์</h2>
+        
+        
+        <div class="form-group">
+            <label for="carPrice">ราคารถยนต์ (บาท):</label>
+            <input type="number" id="carPrice" placeholder="เช่น 800000" min="0" required>
+        </div>
+
+        <div class="form-group">
+            <label for="downPayment">เงินดาวน์ (บาท):</label>
+            <input type="number" id="downPayment" placeholder="เช่น 150000" min="0" required>
+        </div>
+
+        <div class="form-group">
+            <label for="months">ระยะเวลาผ่อนชำระ (เดือน):</label>
+            <input type="number" id="months" placeholder="เช่น 48, 60, 72, 84" value="60" min="1" required>
+        </div>
+
+        
+        <div class="form-group">
+            <label for="interestRate">อัตราดอกเบี้ยต่อปี (%):</label>
+            <input type="number" id="interestRate" step="0.01" value="3.5" min="0" required>
+        </div>
+
+        <button onclick="calculateCarLoan()">คำนวณค่างวด</button>
+
+        
+        <div id="summary"></div>
+    </div>
+
+    
+    <div class="table-container" id="tableContainer" style="display: none;">
+        <h3 style="text-align: center; color: #1e293b;">ตารางผ่อนชำระแบบย่อ (ทุก 6 เดือน)</h3>
+        <div id="paymentTable"></div>
+    </div>
+
+    <script src="lab3_2.js"></script>
+</body>
+</html>
